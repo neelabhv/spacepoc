@@ -29,7 +29,14 @@ export default function DisplayData(){
     const renderYear=()=>time.map((yr)=><button value={yr}>{yr}</button>)
 
     const updateFilter=(filter, value)=>{
-        console.log("updating filters ******** + ", filter + " " + value);
+        console.log("updating filters ******** + ", filter + " " + value + " " + filters[filter]);
+        if(filters[filter]===value){
+            setFilters({...filters,[filter]:null})
+        }
+        else{
+            setFilters({...filters,[filter]:value})
+        }
+        
 
     }
     return (
