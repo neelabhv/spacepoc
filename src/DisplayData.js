@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import axios from 'axios';
-
+// import { URLSearchParams } from 'url';
 
 const BASE_URL = "https://api.spacexdata.com/v3/launches?limit=100&";
 var UPDATED_URL = "";
@@ -32,7 +32,19 @@ export default function DisplayData(){
     const renderYear=()=>time.map((yr)=><button value={yr} onClick={(e)=>{updateFilter("launch_year",yr)}}>{yr}</button>)
 
     useEffect(()=>{
-        console.log("printing string : " + JSON.stringify(filters));
+        console.log("printing string : " + new URLSearchParams(filters).toString());
+        // debugger;
+        var queryParams = new URLSearchParams(filters).toString();
+        // const queryParams = Object.entries(filters).map((query) => {
+        //     //Join all query keys values with ','
+        //     const values = Object.keys(query[0]).map((val) => val);
+        //     //add these values to name of the query
+        //     return query[0]+'='+values;
+        //   }).join('&');
+        // // UPDATED_URL=BASE_URL+Object.entries(filters).forEach(ob=>ob[0]+"="+ob[1]+"&");/
+        UPDATED_URL=BASE_URL+queryParams;
+        console.log(queryParams);
+        console.log(UPDATED_URL);
     },[filters]);
 
     const updateFilter=(filter, value)=>{
