@@ -3,6 +3,7 @@ import axios from 'axios';
 
 
 const BASE_URL = "https://api.spacexdata.com/v3/launches?limit=100&";
+var UPDATED_URL = "";
 
 export default function DisplayData(){
     const [apiData, setApidata] = useState([]);
@@ -21,12 +22,18 @@ export default function DisplayData(){
         axios.get(BASE_URL)
         .then((result)=>{
             setApidata(result.data);
+            console.log("***************** printing data state");
+            console.log(result.data);
         }).catch((err)=>{
             console.error(err);
         })
     },[]);
 
-    const renderYear=()=>time.map((yr)=><button value={yr}>{yr}</button>)
+    const renderYear=()=>time.map((yr)=><button value={yr} onClick={(e)=>{updateFilter("launch_year",yr)}}>{yr}</button>)
+
+    useEffect(()=>{
+        console.log("printing string : " + JSON.stringify(filters));
+    },[filters]);
 
     const updateFilter=(filter, value)=>{
         console.log("updating filters ******** + ", filter + " " + value + " " + filters[filter]);
@@ -36,8 +43,6 @@ export default function DisplayData(){
         else{
             setFilters({...filters,[filter]:value})
         }
-        
-
     }
     return (
     <div>
@@ -45,9 +50,14 @@ export default function DisplayData(){
         <div>
             {renderYear()}
             <button value="true" id="launch_success" 
-            onClick={(e)=>updateFilter("launch_success" , e.target.value)}>TRUE</button>
+            onClick={(e)=>updateFilter("launch_success" , e.target.value)}>launch TRUE</button>
             <button value="false" id="launch_success" 
-            onClick={(e)=>updateFilter("launch_success" , e.target.value)}>FALSE</button>
+            onClick={(e)=>updateFilter("launch_success" , e.target.value)}>launch FALSE</button>
+
+<button value="true" id="land_success" 
+            onClick={(e)=>updateFilter("land_success" , e.target.value)}>landing TRUE</button>
+            <button value="false" id="land_success" 
+            onClick={(e)=>updateFilter("land_success" , e.target.value)}>landing FALSE</button>
         </div>
     </div>
     );
