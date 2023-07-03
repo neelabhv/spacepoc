@@ -34,9 +34,19 @@ export default function DisplayData(){
     useEffect(()=>{
         console.log("printing string : " + new URLSearchParams(filters).toString());
         // debugger;
-        var queryParams = new URLSearchParams(filters).toString();
 
+        var queryParams = new URLSearchParams();
+        const searchParams = new URLSearchParams(filters);
+        
+        console.log("search params : " + searchParams);
+        
+        Object.entries(filters).forEach((property)=>{
+            if(property[1]!=null){
+                queryParams.append(property[0],property[1]);
+            }
+        });
         UPDATED_URL=BASE_URL+queryParams;
+        console.log("queryparam is : " + queryParams + " URL IS : " + UPDATED_URL);
         axios.get(UPDATED_URL)
         .then(result=>{
             console.log("API called on updated filters");
@@ -52,8 +62,10 @@ export default function DisplayData(){
 
     const updateFilter=(filter, value)=>{
         console.log("updating filters ******** + ", filter + " " + value + " " + filters[filter]);
+        UPDATED_URL = BASE_URL; 
         if(filters[filter]===value){
-            setFilters({...filters,[filter]:null})
+            setFilters({...filters,[filter]:null});
+            return;
         }
         else{
             setFilters({...filters,[filter]:value})
