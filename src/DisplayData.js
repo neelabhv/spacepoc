@@ -35,14 +35,17 @@ export default function DisplayData(){
         console.log("printing string : " + new URLSearchParams(filters).toString());
         // debugger;
         var queryParams = new URLSearchParams(filters).toString();
-        // const queryParams = Object.entries(filters).map((query) => {
-        //     //Join all query keys values with ','
-        //     const values = Object.keys(query[0]).map((val) => val);
-        //     //add these values to name of the query
-        //     return query[0]+'='+values;
-        //   }).join('&');
-        // // UPDATED_URL=BASE_URL+Object.entries(filters).forEach(ob=>ob[0]+"="+ob[1]+"&");/
+
         UPDATED_URL=BASE_URL+queryParams;
+        axios.get(UPDATED_URL)
+        .then(result=>{
+            console.log("API called on updated filters");
+            console.log(result.data);
+            setApidata(result.data);
+        })
+        .catch(err=>{
+            console.log(err);
+        })
         console.log(queryParams);
         console.log(UPDATED_URL);
     },[filters]);
