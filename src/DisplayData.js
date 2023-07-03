@@ -17,12 +17,11 @@ export default function DisplayData(){
         2020,2021,2022,2023,2024
       ];
    
-
     useEffect(()=>{
         axios.get(BASE_URL)
         .then((result)=>{
             setApidata(result.data);
-            console.log("***************** printing data state");
+            console.log("***************** printing initial api data state");
             console.log(result.data);
         }).catch((err)=>{
             console.error(err);
@@ -32,36 +31,26 @@ export default function DisplayData(){
     const renderYear=()=>time.map((yr)=><button value={yr} onClick={(e)=>{updateFilter("launch_year",yr)}}>{yr}</button>)
 
     useEffect(()=>{
-        console.log("printing string : " + new URLSearchParams(filters).toString());
-        // debugger;
-
         var queryParams = new URLSearchParams();
         const searchParams = new URLSearchParams(filters);
-        
-        console.log("search params : " + searchParams);
-        
         Object.entries(filters).forEach((property)=>{
             if(property[1]!=null){
                 queryParams.append(property[0],property[1]);
             }
         });
         UPDATED_URL=BASE_URL+queryParams;
-        console.log("queryparam is : " + queryParams + " URL IS : " + UPDATED_URL);
         axios.get(UPDATED_URL)
         .then(result=>{
-            console.log("API called on updated filters");
-            console.log(result.data);
             setApidata(result.data);
+            console.log("***************** printing updated api data state");
+            console.log(result.data);
         })
         .catch(err=>{
             console.log(err);
         })
-        console.log(queryParams);
-        console.log(UPDATED_URL);
     },[filters]);
 
     const updateFilter=(filter, value)=>{
-        console.log("updating filters ******** + ", filter + " " + value + " " + filters[filter]);
         UPDATED_URL = BASE_URL; 
         if(filters[filter]===value){
             setFilters({...filters,[filter]:null});
