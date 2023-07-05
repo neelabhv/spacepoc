@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
 import axios from 'axios';
+import Cards from './Cards';
 // import { URLSearchParams } from 'url';
 
 const BASE_URL = "https://api.spacexdata.com/v3/launches?limit=100&";
@@ -39,6 +40,7 @@ export default function DisplayData(){
             }
         });
         UPDATED_URL=BASE_URL+queryParams;
+        console.log("Updated url : " + UPDATED_URL);
         axios.get(UPDATED_URL)
         .then(result=>{
             setApidata(result.data);
@@ -74,6 +76,12 @@ export default function DisplayData(){
             onClick={(e)=>updateFilter("land_success" , e.target.value)}>landing TRUE</button>
             <button value="false" id="land_success" 
             onClick={(e)=>updateFilter("land_success" , e.target.value)}>landing FALSE</button>
+            
+        </div>
+        <div>
+            {apiData.map(flight => 
+                <Cards flight={flight}></Cards>    
+            )}
         </div>
     </div>
     );
