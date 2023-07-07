@@ -5,7 +5,6 @@ import DisplayData from './DisplayData.js';
 function App() {
   return (
     <div className="App">
-      {window.history.pushState("spaceX","/spaceX")}
       <DisplayData/>
     </div>
   );
