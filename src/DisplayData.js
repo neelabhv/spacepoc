@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import axios from 'axios';
 import Cards from './Cards';
+import { browserHistory } from 'react-router';
 // import { URLSearchParams } from 'url';
 
 const BASE_URL = "https://api.spacexdata.com/v3/launches?limit=100&";
@@ -21,6 +22,8 @@ export default function DisplayData(){
     useEffect(()=>{
         axios.get(BASE_URL)
         .then((result)=>{
+            // window.location.reload();
+            window.history.pushState(null,null,"spaceX");
             setApidata(result.data);
             console.log("***************** printing initial api data state");
             console.log(result.data);
@@ -40,12 +43,15 @@ export default function DisplayData(){
             }
         });
         UPDATED_URL=BASE_URL+queryParams;
-        console.log("Updated url : " + UPDATED_URL);
+        // console.log("Updated params : " + queryParams.toString().length);
+        window.history.pushState(null,null,queryParams.toString().length!==0 ? queryParams.toString() : "spaceX");
         axios.get(UPDATED_URL)
         .then(result=>{
+            // console.log("queryparams is : " + queryParams===null);
+            console.log(window.history);
             setApidata(result.data);
-            console.log("***************** printing updated api data state");
-            console.log(result.data);
+            // console.log("***************** printing updated api data state");
+            // console.log(result.data);
         })
         .catch(err=>{
             console.log(err);
