@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import axios from 'axios';
 import Cards from './Cards';
+import './App.css';
 import { browserHistory } from 'react-router';
 // import { URLSearchParams } from 'url';
 
@@ -69,9 +70,8 @@ export default function DisplayData(){
         }
     }
     return (
-    <div>
-        Hello Display
-        <div>
+    <div id="flights">
+        <aside>
             {renderYear()}
             <button value="true" id="launch_success" 
             onClick={(e)=>updateFilter("launch_success" , e.target.value)}>launch TRUE</button>
@@ -83,8 +83,8 @@ export default function DisplayData(){
             <button value="false" id="land_success" 
             onClick={(e)=>updateFilter("land_success" , e.target.value)}>landing FALSE</button>
             
-        </div>
-        <div>
+        </aside>
+        <div id="flightcard">
             {apiData.map(flight => 
                 <Cards flight={flight}></Cards>    
             )}
