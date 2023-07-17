@@ -68,4 +68,5 @@ button{
   border-radius: 7px;
   border-style: none;
   background-color: rgb(85, 129, 85);
+  cursor: pointer;
 }
