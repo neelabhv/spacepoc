@@ -1,7 +1,17 @@
+body{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: rgb(236, 234, 234);
+}
 #flightcard{
+  padding:5px;
   display:flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: space-around;
+  border: solid;
 }
 body{
   margin:0;
@@ -14,9 +24,17 @@ body{
   display: flex;
 }
 #eachcard{
-  box-shadow: 2px 2px 5px 1px saddlebrown;
+  flex-basis:25%;
+  /* max-width: 300px; */
+  /* width:%; */
+  /* border:2px solid olive; */
+  background-color: white;
   margin:10px;
-  
+  padding:5px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px 1px seagreen;
+  transition:background-color 3s;
+  /* margin: 5px; */
 }
 
 aside{
@@ -29,5 +47,25 @@ aside{
   /* border: 2px solid red; */
   height:100%;
   border-radius: 10px;
-  box-shadow: 2px 2px 5px 1px #9f8878;
+  box-shadow: 2px 2px 5px 1px saddlebrown;
+}
+
+#launch_success,#land_success{
+  margin:10px;
+  padding:10px;
+  
+} 
+#launch_year{
+  margin:10px;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+button{
+  margin:5px;
+  padding:5px;
+  border-radius: 7px;
+  border-style: none;
+  background-color: rgb(85, 129, 85);
 }

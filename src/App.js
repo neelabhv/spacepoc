@@ -1,11 +1,10 @@
-
-import './App.css';
-import DisplayData from './DisplayData.js';
+import "./App.css";
+import DisplayData from "./DisplayData.js";
 
 function App() {
   return (
     <div className="App">
-      <DisplayData/>
+      <DisplayData />
     </div>
   );
 }
