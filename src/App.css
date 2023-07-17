@@ -7,11 +7,12 @@ body{
 }
 #flightcard{
   padding:5px;
+  align-items: flex-start;
   display:flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
-  border: solid;
+  /* border: solid; */
 }
 body{
   margin:0;
@@ -28,6 +29,8 @@ body{
   /* max-width: 300px; */
   /* width:%; */
   /* border:2px solid olive; */
+  flex-wrap: wrap;
+ 
   background-color: white;
   margin:10px;
   padding:5px;
@@ -48,6 +51,10 @@ aside{
   height:100%;
   border-radius: 10px;
   box-shadow: 2px 2px 5px 1px saddlebrown;
+}
+
+aside button{
+  flex-basis: 20%;
 }
 
 #launch_success,#land_success{
