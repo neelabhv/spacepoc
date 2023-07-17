@@ -11,6 +11,9 @@ export default function Cards({ flight }) {
   // debugger;
   return (
     <div>
+       <div id="image">
+            <img src={flight.links.mission_patch_small} alt="Image cannot be displayed" />
+            </div>
       <div id="each-flight-detail">
         Mission : {mission_name} #{flight_number}
       </div>

@@ -70,3 +70,9 @@ button{
   background-color: rgb(85, 129, 85);
   cursor: pointer;
 }
+
+#image{
+  background-color: rgb(200, 205, 210);
+  border-radius: 5px;
+  margin: 5px 5px;
+}
